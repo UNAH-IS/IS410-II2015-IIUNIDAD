@@ -1,0 +1,24 @@
+package application;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+
+public class RegistroProductosController implements Initializable{
+	@FXML private ComboBox<String> cboMarca;
+	@FXML private ComboBox<String> cboLote;
+	@FXML private ComboBox<String> cboCategoria;
+	@FXML private ComboBox<String> cboUnidadMedida;
+	@FXML private ComboBox<String> cboProveedor;
+	
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		
+	}
+	
+}
