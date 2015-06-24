@@ -1,0 +1,128 @@
+package modelo;
+
+import java.util.Date;
+
+public class Producto {
+	private int codigoProducto;
+	private String codigoBarra;
+	private String nombreProducto;
+	private String descripcion;
+	private double precioCompra;
+	private double precioVenta;
+	private String marca;
+	private String lote;
+	private String categoria;
+	private String unidadMedida;
+	private String proveedor;
+	private float existencia;
+	private Date fechaVencimiento;
+	private String moneda;
+	
+	public Producto(int codigoProducto, String codigoBarra,
+			String nombreProducto, String descripcion, double precioCompra,
+			double precioVenta, String marca, String lote, String categoria,
+			String unidadMedida, String proveedor, float existencia,
+			Date fechaVencimiento, String moneda) {
+		this.codigoProducto = codigoProducto;
+		this.codigoBarra = codigoBarra;
+		this.nombreProducto = nombreProducto;
+		this.descripcion = descripcion;
+		this.precioCompra = precioCompra;
+		this.precioVenta = precioVenta;
+		this.marca = marca;
+		this.lote = lote;
+		this.categoria = categoria;
+		this.unidadMedida = unidadMedida;
+		this.proveedor = proveedor;
+		this.existencia = existencia;
+		this.fechaVencimiento = fechaVencimiento;
+		this.moneda = moneda;
+	}
+	
+	public int getCodigoProducto() {
+		return codigoProducto;
+	}
+	public void setCodigoProducto(int codigoProducto) {
+		this.codigoProducto = codigoProducto;
+	}
+	public String getCodigoBarra() {
+		return codigoBarra;
+	}
+	public void setCodigoBarra(String codigoBarra) {
+		this.codigoBarra = codigoBarra;
+	}
+	public String getNombreProducto() {
+		return nombreProducto;
+	}
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public double getPrecioCompra() {
+		return precioCompra;
+	}
+	public void setPrecioCompra(double precioCompra) {
+		this.precioCompra = precioCompra;
+	}
+	public double getPrecioVenta() {
+		return precioVenta;
+	}
+	public void setPrecioVenta(double precioVenta) {
+		this.precioVenta = precioVenta;
+	}
+	public String getMarca() {
+		return marca;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+	public String getLote() {
+		return lote;
+	}
+	public void setLote(String lote) {
+		this.lote = lote;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	public String getUnidadMedida() {
+		return unidadMedida;
+	}
+	public void setUnidadMedida(String unidadMedida) {
+		this.unidadMedida = unidadMedida;
+	}
+	public String getProveedor() {
+		return proveedor;
+	}
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
+	}
+	public float getExistencia() {
+		return existencia;
+	}
+	public void setExistencia(float existencia) {
+		this.existencia = existencia;
+	}
+	public Date getFechaVencimiento() {
+		return fechaVencimiento;
+	}
+	public void setFechaVencimiento(Date fechaVencimiento) {
+		this.fechaVencimiento = fechaVencimiento;
+	}
+	public String getMoneda() {
+		return moneda;
+	}
+	public void setMoneda(String moneda) {
+		this.moneda = moneda;
+	}
+	
+	
+}

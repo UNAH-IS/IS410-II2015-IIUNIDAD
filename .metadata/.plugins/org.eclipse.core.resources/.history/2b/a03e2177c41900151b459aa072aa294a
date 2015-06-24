@@ -1,0 +1,146 @@
+package modelo;
+
+import java.util.Date;
+
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+public class ProductoFX {
+	private IntegerProperty codigoProducto;
+	private StringProperty codigoBarra;
+	private StringProperty nombreProducto;
+	private StringProperty descripcion;
+	private DoubleProperty precioCompra;
+	private DoubleProperty precioVenta;
+	private StringProperty marca;
+	private StringProperty lote;
+	private StringProperty categoria;
+	private StringProperty unidadMedida;
+	private StringProperty proveedor;
+	private FloatProperty existencia;
+	private Date fechaVencimiento;
+	private StringProperty moneda;
+	
+	public ProductoFX(int codigoProducto, String codigoBarra,
+			String nombreProducto, String descripcion, double precioCompra,
+			double precioVenta, String marca, String lote, String categoria,
+			String unidadMedida, String proveedor, float existencia,
+			Date fechaVencimiento, String moneda) {
+		this.codigoProducto = new SimpleIntegerProperty(codigoProducto);
+		this.codigoBarra = new SimpleStringProperty(codigoBarra);
+		this.nombreProducto = new SimpleStringProperty(nombreProducto);
+		this.descripcion = new SimpleStringProperty(descripcion);
+		this.precioCompra = new SimpleDoubleProperty(precioCompra);
+		this.precioVenta = new SimpleDoubleProperty(precioVenta);
+		this.marca = new SimpleStringProperty(marca);
+		this.lote = new SimpleStringProperty(lote);
+		this.categoria = new SimpleStringProperty(categoria);
+		this.unidadMedida = new SimpleStringProperty(unidadMedida);
+		this.proveedor = new SimpleStringProperty(proveedor);
+		this.existencia = new SimpleFloatProperty(existencia);
+		this.fechaVencimiento = fechaVencimiento;
+		this.moneda = new SimpleStringProperty(moneda);
+	}
+	
+	public int getCodigoProducto() {
+		return codigoProducto.get();
+	}
+	public void setCodigoProducto(int codigoProducto) {
+		this.codigoProducto = new SimpleIntegerProperty(codigoProducto);
+	}
+	public IntegerProperty codigoProductoProperty(){
+		return this.codigoProducto;
+	}
+	
+	
+	public String getCodigoBarra() {
+		return codigoBarra.get();
+	}
+	public void setCodigoBarra(String codigoBarra) {
+		this.codigoBarra = new SimpleStringProperty(codigoBarra);
+	}
+	public StringProperty codigoBarraProperty(){
+		return this.codigoBarra;
+	} 
+	
+	public String getNombreProducto() {
+		return nombreProducto;
+	}
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public double getPrecioCompra() {
+		return precioCompra;
+	}
+	public void setPrecioCompra(double precioCompra) {
+		this.precioCompra = precioCompra;
+	}
+	public double getPrecioVenta() {
+		return precioVenta;
+	}
+	public void setPrecioVenta(double precioVenta) {
+		this.precioVenta = precioVenta;
+	}
+	public String getMarca() {
+		return marca;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+	public String getLote() {
+		return lote;
+	}
+	public void setLote(String lote) {
+		this.lote = lote;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	public String getUnidadMedida() {
+		return unidadMedida;
+	}
+	public void setUnidadMedida(String unidadMedida) {
+		this.unidadMedida = unidadMedida;
+	}
+	public String getProveedor() {
+		return proveedor;
+	}
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
+	}
+	public float getExistencia() {
+		return existencia;
+	}
+	public void setExistencia(float existencia) {
+		this.existencia = existencia;
+	}
+	public Date getFechaVencimiento() {
+		return fechaVencimiento;
+	}
+	public void setFechaVencimiento(Date fechaVencimiento) {
+		this.fechaVencimiento = fechaVencimiento;
+	}
+	public String getMoneda() {
+		return moneda;
+	}
+	public void setMoneda(String moneda) {
+		this.moneda = moneda;
+	}
+	
+	
+}
