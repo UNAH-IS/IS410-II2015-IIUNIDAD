@@ -6,4 +6,7 @@
 <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
 <fullyQualifiedTypeName name="javafx.scene.control.TextArea"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="javafx.beans.property.StringProperty"/>
+<fullyQualifiedTypeName name="javafx.scene.control.TableView"/>
+<fullyQualifiedTypeName name="javafx.scene.control.TableColumn"/>
 </qualifiedTypeNameHistroy>
