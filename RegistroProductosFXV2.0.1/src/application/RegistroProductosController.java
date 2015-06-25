@@ -4,12 +4,15 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -32,6 +35,8 @@ public class RegistroProductosController implements Initializable{
 	@FXML private RadioButton rbtLempiras;
 	@FXML private RadioButton rbtDolares;
 	
+	@FXML private Button btnActualizar;
+	@FXML private Button btnEliminar;
 	
 	@FXML private ComboBox<String> cboMarca;
 	@FXML private ComboBox<String> cboLote;
@@ -87,7 +92,86 @@ public class RegistroProductosController implements Initializable{
 		clmnCodigoProducto.setCellValueFactory(
 				new PropertyValueFactory<Producto,Number>("codigoProducto")
 		);
+		clmnCodigoBarras.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("codigoBarra")
+		);
+		clmnNombreProducto.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("nombreProducto")
+		);
+		clmnPrecioCompra.setCellValueFactory(
+				new PropertyValueFactory<Producto,Number>("precioCompra")
+		);
+		clmnPrecioVenta.setCellValueFactory(
+				new PropertyValueFactory<Producto,Number>("precioVenta")
+		);
+		clmnMarca.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("marca")
+		);
+		clmnLote.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("lote")
+		);
+		clmnCategoria.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("categoria")
+		);
+		clmnUnidadMedida.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("unidadMedida")
+		);
+		clmnProveedor.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("proveedor")
+		);
+		clmnExistencia.setCellValueFactory(
+				new PropertyValueFactory<Producto,Number>("existencia")
+		);
+		clmnMoneda.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("moneda")
+		);
+		clmnExistencia.setCellValueFactory(
+				new PropertyValueFactory<Producto,Number>("existencia")
+		);
+		clmnFechaVencimiento.setCellValueFactory(
+				new PropertyValueFactory<Producto,Date>("fechaVencimiento")
+		);
 		tblInformacion.setItems(informacion);
+		
+		
+		tblInformacion.
+			getSelectionModel().
+			selectedItemProperty().
+			addListener(
+					new ChangeListener<Producto>() {
+						@Override
+						public void changed(
+								ObservableValue<? extends Producto> arg0,
+								Producto valorAnterior, 
+								Producto valorNuevo) {
+							btnActualizar.setDisable(false);
+							btnEliminar.setDisable(false);
+							llenarComponentes(valorNuevo);
+							/*if (valorAnterior !=null && valorNuevo!=null){
+								Alert mensaje = new Alert(AlertType.INFORMATION);
+								mensaje.setHeaderText("Se selecciono un registro");
+								mensaje.setContentText(
+										"Valor anterior:"+valorAnterior.getNombreProducto()+"\n"
+										+ "Valor nuevo:"+valorNuevo.getNombreProducto());
+								mensaje.showAndWait();
+							}*/
+						}
+					}
+			);
+	}
+	
+	public void llenarComponentes(Producto valorNuevo){
+		txtNombreProducto.setText(valorNuevo.getNombreProducto());
+		txtDescripcion.setText(valorNuevo.getDescripcion());
+		cboMarca.getSelectionModel().select(valorNuevo.getMarca());
+		if (valorNuevo.getMoneda().equals("Lempiras"))
+			rbtLempiras.setSelected(true);
+		else if (valorNuevo.getMoneda().equals("Dolares"))
+			rbtDolares.setSelected(true);
+		else {
+			rbtDolares.setSelected(false);
+			rbtLempiras.setSelected(false);
+		}
 	}
 	
 	public void llenarListas(){
@@ -110,6 +194,25 @@ public class RegistroProductosController implements Initializable{
 		listaProveedores.add("Proveedor 1");
 		listaProveedores.add("Proveedor 2");
 		listaProveedores.add("Proveedor 3");
+		
+		informacion.add(
+				new Producto(
+					132,
+					"123456789",
+					"Producto 1",
+					"Esta es la descripcion",
+					456,
+					500,
+					"Marca 1",
+					"Lote 1",
+					"Categoria 1",
+					"Unidad Medida 1",
+					"Proveedor 1",
+					123,
+					new Date(),
+					"Lempiras"
+				)
+		);
 	}
 	
 	@FXML

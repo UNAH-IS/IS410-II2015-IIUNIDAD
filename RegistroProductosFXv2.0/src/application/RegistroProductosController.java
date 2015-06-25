@@ -4,12 +4,15 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -32,6 +35,8 @@ public class RegistroProductosController implements Initializable{
 	@FXML private RadioButton rbtLempiras;
 	@FXML private RadioButton rbtDolares;
 	//@FXML private TextArea txtResultado;
+	@FXML private Button btnActualizar;
+	@FXML private Button btnEliminar;
 	
 	@FXML private ComboBox<String> cboMarca;
 	@FXML private ComboBox<String> cboLote;
@@ -79,24 +84,83 @@ public class RegistroProductosController implements Initializable{
 		cboUnidadMedida.setItems(listaUnidadesMedidas);
 		cboProveedor.setItems(listaProveedores);
 
-		
-		//Enlazar las columnas con un atributo especifico
-		clmnCodigoProducto.setCellValueFactory(new PropertyValueFactory<Producto,Number>("codigoProducto"));
-		/*clmnCodigoBarras;
-		clmnNombreProducto;
-		clmnPrecioCompra;
-		clmnPrecioVenta;
-		clmnMarca;
-		clmnLote;
-		clmnCategoria;
-		clmnUnidadMedida;
-		clmnProveedor;
-		clmnExistencia;
-		clmnFechaVencimiento;
-		clmnMoneda;*/
+		//Enlazar las columnas del tableview con los 
+		//respectivos atributos de la clase Producto
+		//El String tiene que coincidir con el nombre del atributo correspondiente
+		clmnCodigoProducto.setCellValueFactory(
+				new PropertyValueFactory<Producto,Number>("codigoProducto")
+		);
+		clmnCodigoBarras.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("codigoBarra")
+		);
+		clmnNombreProducto.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("nombreProducto")
+		);
+		clmnPrecioCompra.setCellValueFactory(
+				new PropertyValueFactory<Producto,Number>("precioCompra")
+		);
+		clmnPrecioVenta.setCellValueFactory(
+				new PropertyValueFactory<Producto,Number>("precioVenta")
+		);
+		clmnMarca.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("marca")
+		);
+		clmnLote.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("lote")
+		);
+		clmnCategoria.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("categoria")
+		);
+		clmnUnidadMedida.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("unidadMedida")
+		);
+		clmnProveedor.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("proveedor")
+		);
+		clmnExistencia.setCellValueFactory(
+				new PropertyValueFactory<Producto,Number>("existencia")
+		);
+		clmnMoneda.setCellValueFactory(
+				new PropertyValueFactory<Producto,String>("moneda")
+		);
+		clmnExistencia.setCellValueFactory(
+				new PropertyValueFactory<Producto,Number>("existencia")
+		);
+		clmnFechaVencimiento.setCellValueFactory(
+				new PropertyValueFactory<Producto,Date>("fechaVencimiento")
+		);
 		
 		//Llenar la informacion
 		tblInformacion.setItems(informacion);
+		
+		//Agregar Listener que permita identificar cuando se
+		//selecciona un registro
+		tblInformacion.getSelectionModel().
+			selectedItemProperty().addListener(new ChangeListener<Producto>() {
+				@Override
+				public void changed(
+						ObservableValue<? extends Producto> arg0, 
+						Producto valorAnterior,
+						Producto valorNuevo) {
+					btnActualizar.setDisable(false);
+					btnEliminar.setDisable(false);
+					llenarComponentes(valorNuevo);
+					/*System.out.println("Se ejecuto changed");
+					if (valorAnterior !=null && valorNuevo!=null){
+						Alert mensaje = new Alert(AlertType.INFORMATION);
+						mensaje.setContentText("Valor Anterior:" + valorAnterior.getNombreProducto()+"\n"+
+									"Valor Nuevo:" + valorNuevo.getNombreProducto());
+						mensaje.showAndWait();
+					}*/
+				}
+				
+			});
+	}
+	
+	public void llenarComponentes(Producto valorNuevo){
+		txtNombreProducto.setText(valorNuevo.getNombreProducto());
+		txtDescripcion.setText(valorNuevo.getDescripcion());
+		cboMarca.getSelectionModel().select(valorNuevo.getMarca());
 	}
 	
 	public void llenarListas(){
@@ -119,6 +183,24 @@ public class RegistroProductosController implements Initializable{
 		listaProveedores.add("Proveedor 1");
 		listaProveedores.add("Proveedor 2");
 		listaProveedores.add("Proveedor 3");
+		
+		informacion.add(
+				new Producto(
+					123,
+					"123456",
+					"Producto por defecto",
+					"Esta es la descripcion",
+					123.12,
+					125.12,
+					"Marca 1",
+					"Lote 1",
+					"Categoria 1",
+					"Unidad Medida 1",
+					"Proveedor",
+					12,
+					new Date(),
+					"Lempiras"
+				));
 	}
 	
 	@FXML
