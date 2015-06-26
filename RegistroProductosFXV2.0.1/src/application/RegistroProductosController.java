@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -37,6 +38,7 @@ public class RegistroProductosController implements Initializable{
 	
 	@FXML private Button btnActualizar;
 	@FXML private Button btnEliminar;
+	@FXML private Button btnGuardar;
 	
 	@FXML private ComboBox<String> cboMarca;
 	@FXML private ComboBox<String> cboLote;
@@ -146,7 +148,10 @@ public class RegistroProductosController implements Initializable{
 								Producto valorNuevo) {
 							btnActualizar.setDisable(false);
 							btnEliminar.setDisable(false);
-							llenarComponentes(valorNuevo);
+							if (valorNuevo != null){
+								btnGuardar.setDisable(true);
+								llenarComponentes(valorNuevo);
+							}
 							/*if (valorAnterior !=null && valorNuevo!=null){
 								Alert mensaje = new Alert(AlertType.INFORMATION);
 								mensaje.setHeaderText("Se selecciono un registro");
@@ -161,9 +166,20 @@ public class RegistroProductosController implements Initializable{
 	}
 	
 	public void llenarComponentes(Producto valorNuevo){
+		txtCodigoProducto.setText(String.valueOf(valorNuevo.getCodigoProducto()));
+		txtCodigoBarras.setText(valorNuevo.getCodigoBarra());
 		txtNombreProducto.setText(valorNuevo.getNombreProducto());
 		txtDescripcion.setText(valorNuevo.getDescripcion());
+		txtPrecioCompra.setText(String.valueOf(valorNuevo.getPrecioCompra()));
+		txtPrecioVenta.setText(String.valueOf(valorNuevo.getPrecioVenta()));
 		cboMarca.getSelectionModel().select(valorNuevo.getMarca());
+		cboLote.getSelectionModel().select(valorNuevo.getLote());
+		cboCategoria.getSelectionModel().select(valorNuevo.getCategoria());
+		cboUnidadMedida.getSelectionModel().select(valorNuevo.getUnidadMedida());
+		cboProveedor.getSelectionModel().select(valorNuevo.getProveedor());
+		txtExistencia.setText(String.valueOf(valorNuevo.getExistencia()));
+		dpFechaVencimiento.setValue(valorNuevo.getFechaVencimiento().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+		
 		if (valorNuevo.getMoneda().equals("Lempiras"))
 			rbtLempiras.setSelected(true);
 		else if (valorNuevo.getMoneda().equals("Dolares"))
@@ -171,7 +187,7 @@ public class RegistroProductosController implements Initializable{
 		else {
 			rbtDolares.setSelected(false);
 			rbtLempiras.setSelected(false);
-		}
+		}	
 	}
 	
 	public void llenarListas(){
@@ -242,6 +258,72 @@ public class RegistroProductosController implements Initializable{
 		cuadroDialogo.setHeaderText("Resultado:");
 		cuadroDialogo.showAndWait();
 		//actualizarResultado();
+	}
+	
+	@FXML
+	public void actualizarRegistro(){
+		informacion.set(
+				tblInformacion.getSelectionModel().getSelectedIndex(),
+				new Producto(
+					Integer.valueOf(txtCodigoProducto.getText()),
+					txtCodigoBarras.getText(),
+					txtNombreProducto.getText(),
+					txtDescripcion.getText(),
+					Double.valueOf(txtPrecioCompra.getText()),
+					Double.valueOf(txtPrecioVenta.getText()),
+					cboMarca.getSelectionModel().getSelectedItem(),
+					cboLote.getSelectionModel().getSelectedItem(),
+					cboCategoria.getSelectionModel().getSelectedItem(),
+					cboUnidadMedida.getSelectionModel().getSelectedItem(),
+					cboProveedor.getSelectionModel().getSelectedItem(),
+					Float.valueOf(txtExistencia.getText()),
+					new Date(dpFechaVencimiento.getValue().toEpochDay()),
+					rbtLempiras.isSelected()?rbtLempiras.getText():rbtDolares.getText()
+				)
+		);
+		//JDK > 8u0.40
+		Alert cuadroDialogo = new Alert(AlertType.INFORMATION);
+		cuadroDialogo.setContentText("El registro se actualizo con exito.");
+		cuadroDialogo.setTitle("Resultado");
+		cuadroDialogo.setHeaderText("Resultado:");
+		cuadroDialogo.showAndWait();
+	}
+	
+	@FXML
+	public void eliminarRegistro(){
+		informacion.remove(tblInformacion.getSelectionModel().getSelectedIndex());
+		limpiarComponentes();
+		//JDK > 8u0.40
+		Alert cuadroDialogo = new Alert(AlertType.INFORMATION);
+		cuadroDialogo.setContentText("El registro se elimino con exito.");
+		cuadroDialogo.setTitle("Resultado");
+		cuadroDialogo.setHeaderText("Resultado:");
+		cuadroDialogo.showAndWait();
+	}
+	
+	@FXML
+	public void limpiarComponentes(){
+		txtCodigoProducto.setText(null);
+		txtCodigoBarras.setText(null);
+		txtNombreProducto.setText(null);
+		txtDescripcion.setText(null);
+		txtPrecioCompra.setText(null);
+		txtPrecioVenta.setText(null);
+		cboMarca.getSelectionModel().select(null);
+		cboLote.getSelectionModel().select(null);
+		cboCategoria.getSelectionModel().select(null);
+		cboUnidadMedida.getSelectionModel().select(null);
+		cboProveedor.getSelectionModel().select(null);
+		txtExistencia.setText(null);
+		dpFechaVencimiento.setValue(null);
+		rbtDolares.setSelected(false);
+		rbtLempiras.setSelected(false);
+		tblInformacion.getSelectionModel().select(null);
+		//Para evitar un bug de que no se desactiven
+		//mejor hacerlo al final del metodo
+		btnActualizar.setDisable(true);
+		btnEliminar.setDisable(true);
+		btnGuardar.setDisable(false);
 	}
 	
 	/*public void actualizarResultado(){
