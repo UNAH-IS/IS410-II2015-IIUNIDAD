@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="728.0" prefWidth="517.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegistroProductosController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <SplitPane dividerPositions="0.6804407713498623" focusTraversable="true" orientation="VERTICAL" prefHeight="540.0001068115234" prefWidth="310.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <items>
+        <AnchorPane>
+          <children>
+            <GridPane layoutX="13.0" layoutY="12.0" prefHeight="429.0" prefWidth="483.0">
+              <children>
+                <Label text="Codigo Producto:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                <Label text="Nombre Producto:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                <Label text="Descripcion:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                <Label text="Marca:" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                <Label text="Precio compra:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                <Label text="Precio venta:" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                <Label text="Codigo de barra:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                <Label text="Lote:" GridPane.columnIndex="0" GridPane.rowIndex="7">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                <Label text="Categoria:" GridPane.columnIndex="0" GridPane.rowIndex="8">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                <Label text="Existencia:" GridPane.columnIndex="0" GridPane.rowIndex="11">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                <Label text="Unidad de medida:" GridPane.columnIndex="0" GridPane.rowIndex="9">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                <Label text="Fecha de vencimiento:" GridPane.columnIndex="0" GridPane.rowIndex="12">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                <Label text="Proveedor:" GridPane.columnIndex="0" GridPane.rowIndex="10">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                        <TextField fx:id="txtCodigoProducto" prefHeight="25.0" prefWidth="242.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtNombreProducto" prefHeight="25.0" prefWidth="354.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextArea fx:id="txtDescripcion" prefHeight="50.0" prefWidth="353.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="cboMarca" prefHeight="25.0" prefWidth="337.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="txtPrecioCompra" prefHeight="25.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="txtPrecioVenta" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="txtCodigoBarras" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="cboLote" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <ComboBox fx:id="cboCategoria" prefHeight="25.0" prefWidth="332.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextField fx:id="txtExistencia" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <ComboBox fx:id="cboUnidadMedida" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <DatePicker fx:id="dpFechaVencimiento" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                        <ComboBox fx:id="cboProveedor" prefHeight="25.0" prefWidth="329.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label text="Moneda:" GridPane.rowIndex="13">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="13">
+                           <children>
+                              <RadioButton fx:id="rbtLempiras" mnemonicParsing="false" text="Lempiras">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="moneda" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="rbtDolares" mnemonicParsing="false" text="Dolares" toggleGroup="$moneda" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" top="7.0" />
+                           </padding>
+                        </HBox>
+              </children>
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="144.0" />
+                <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="371.0" minWidth="10.0" prefWidth="371.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="37.0" minHeight="20.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="69.0" minHeight="20.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="40.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="62.0" minHeight="20.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="67.0" minHeight="20.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="76.0" minHeight="20.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="76.0" minHeight="18.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="61.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="55.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="53.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="38.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="64.0" minHeight="20.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="42.0" minHeight="20.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="42.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+                  <HBox layoutX="14.0" layoutY="452.0" prefHeight="39.0" prefWidth="381.0" spacing="5.0">
+                     <children>
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#agregarRegistro" text="Guardar" />
+                        <Button fx:id="btnActualizar" disable="true" mnemonicParsing="false" onAction="#actualizarRegistro" text="Actualizar" />
+                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminarRegistro" text="Eliminar" />
+                        <Button mnemonicParsing="false" onAction="#limpiarComponentes" text="Nuevo" />
+                     </children>
+                  </HBox>
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="515.0">
+               <children>
+                  <TableView fx:id="tblInformacion" layoutX="-1.0" prefHeight="229.0" prefWidth="515.0">
+                    <columns>
+                      <TableColumn fx:id="clmnCodigoProducto" prefWidth="75.0" text="Codigo" />
+                      <TableColumn fx:id="clmnCodigoBarras" prefWidth="75.0" text="Codigo Barra" />
+                        <TableColumn fx:id="clmnNombreProducto" prefWidth="75.0" text="Nombre" />
+                        <TableColumn fx:id="clmnPrecioCompra" prefWidth="75.0" text="P/Compra" />
+                        <TableColumn fx:id="clmnPrecioVenta" prefWidth="75.0" text="P/Venta" />
+                        <TableColumn fx:id="clmnMarca" prefWidth="75.0" text="Marca" />
+                        <TableColumn fx:id="clmnLote" prefWidth="75.0" text="Lote" />
+                        <TableColumn fx:id="clmnCategoria" prefWidth="75.0" text="Categoria" />
+                        <TableColumn fx:id="clmnUnidadMedida" prefWidth="75.0" text="U. Medida" />
+                        <TableColumn fx:id="clmnProveedor" prefWidth="75.0" text="Proveedor" />
+                        <TableColumn fx:id="clmnExistencia" prefWidth="75.0" text="Existencia" />
+                        <TableColumn fx:id="clmnFechaVencimiento" prefWidth="75.0" text="Fecha V." />
+                        <TableColumn fx:id="clmnMoneda" prefWidth="75.0" text="Moneda" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+</AnchorPane>
