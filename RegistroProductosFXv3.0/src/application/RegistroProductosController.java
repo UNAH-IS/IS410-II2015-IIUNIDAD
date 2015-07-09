@@ -2,7 +2,7 @@ package application;
 
 import java.net.URL;
 import java.time.ZoneId;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -23,10 +23,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import modelo.Categoria;
 import modelo.Conexion;
+import modelo.Lote;
 import modelo.Marca;
 import modelo.Moneda;
 import modelo.Producto;
+import modelo.Proveedor;
+import modelo.UnidadMedida;
 
 public class RegistroProductosController implements Initializable{
 	@FXML private TextField txtCodigoProducto; 
@@ -44,10 +48,10 @@ public class RegistroProductosController implements Initializable{
 	@FXML private Button btnGuardar;
 	
 	@FXML private ComboBox<Marca> cboMarca;
-	@FXML private ComboBox<String> cboLote;
-	@FXML private ComboBox<String> cboCategoria;
-	@FXML private ComboBox<String> cboUnidadMedida;
-	@FXML private ComboBox<String> cboProveedor;
+	@FXML private ComboBox<Lote> cboLote;
+	@FXML private ComboBox<Categoria> cboCategoria;
+	@FXML private ComboBox<UnidadMedida> cboUnidadMedida;
+	@FXML private ComboBox<Proveedor> cboProveedor;
 	@FXML private ComboBox<Moneda> cboMoneda;
 	
 	@FXML private TableView<Producto> tblInformacion;
@@ -67,10 +71,10 @@ public class RegistroProductosController implements Initializable{
 	
 	
 	private ObservableList<Marca> listaMarcas;
-	private ObservableList<String> listaLotes;
-	private ObservableList<String> listaCategorias;
-	private ObservableList<String> listaUnidadesMedidas;
-	private ObservableList<String> listaProveedores;
+	private ObservableList<Lote> listaLotes;
+	private ObservableList<Categoria> listaCategorias;
+	private ObservableList<UnidadMedida> listaUnidadesMedidas;
+	private ObservableList<Proveedor> listaProveedores;
 	private ObservableList<Moneda> listaMonedas;
 	
 	private ObservableList<Producto> informacion;
@@ -185,7 +189,7 @@ public class RegistroProductosController implements Initializable{
 		cboUnidadMedida.getSelectionModel().select(valorNuevo.getUnidadMedida());
 		cboProveedor.getSelectionModel().select(valorNuevo.getProveedor());
 		txtExistencia.setText(String.valueOf(valorNuevo.getExistencia()));
-		dpFechaVencimiento.setValue(valorNuevo.getFechaVencimiento().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+		dpFechaVencimiento.setValue(valorNuevo.getFechaVencimiento().toLocalDate());
 		cboMoneda.getSelectionModel().select(valorNuevo.getMoneda());
 		
 		
@@ -219,7 +223,9 @@ public class RegistroProductosController implements Initializable{
 		
 		conexion.llenarInformacionMoneda(listaMonedas);
 		
-		informacion.add(
+		
+		conexion.llenarInformacionTableView(informacion);
+		/*informacion.add(
 				new Producto(
 					123,
 					"123456",
@@ -228,14 +234,14 @@ public class RegistroProductosController implements Initializable{
 					123.12,
 					125.12,
 					new Marca(1,"Marca 1"),
-					"Lote 1",
-					"Categoria 1",
-					"Unidad Medida 1",
-					"Proveedor",
+					new Lote(1,"Lote 1"),
+					new Categoria(1,"Categoria 1"),
+					new UnidadMedida(1,"Unidad Medida 1"),
+					new Proveedor(1,"Proveedor"),
 					12,
-					new Date(),
+					new Date(2015,12,1),
 					new Moneda(1,"Lempiras","L.")
-				));
+				));*/
 		
 		conexion.cerrarConexion();
 	}
@@ -256,7 +262,7 @@ public class RegistroProductosController implements Initializable{
 					cboUnidadMedida.getSelectionModel().getSelectedItem(),
 					cboProveedor.getSelectionModel().getSelectedItem(),
 					Float.valueOf(txtExistencia.getText()),
-					new Date(dpFechaVencimiento.getValue().toEpochDay()),
+					Date.valueOf(dpFechaVencimiento.getValue()),
 					cboMoneda.getSelectionModel().getSelectedItem()
 				)
 		);

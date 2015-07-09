@@ -1,7 +1,9 @@
 package modelo;
 
-import java.util.Date;
+
 //Java Bean = POJO
+import java.sql.Date;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
@@ -19,18 +21,18 @@ public class Producto {
 	private DoubleProperty precioCompra;
 	private DoubleProperty precioVenta;
 	private Marca marca; //Composicion
-	private StringProperty lote;
-	private StringProperty categoria;
-	private StringProperty unidadMedida;
-	private StringProperty proveedor;
+	private Lote lote;//Composicion
+	private Categoria categoria;//Composicion
+	private UnidadMedida unidadMedida;//Composicion
+	private Proveedor proveedor;//Composicion
 	private FloatProperty existencia;
 	private Date fechaVencimiento;
 	private Moneda moneda;//Composicion
 	
 	public Producto(int codigoProducto, String codigoBarra,
 			String nombreProducto, String descripcion, double precioCompra,
-			double precioVenta, Marca marca, String lote, String categoria,
-			String unidadMedida, String proveedor, float existencia,
+			double precioVenta, Marca marca, Lote lote, Categoria categoria,
+			UnidadMedida unidadMedida, Proveedor proveedor, float existencia,
 			Date fechaVencimiento, Moneda moneda) {
 		this.codigoProducto = new SimpleIntegerProperty(codigoProducto);
 		this.codigoBarra = new SimpleStringProperty(codigoBarra);
@@ -39,10 +41,10 @@ public class Producto {
 		this.precioCompra = new SimpleDoubleProperty(precioCompra);
 		this.precioVenta = new SimpleDoubleProperty(precioVenta);
 		this.marca = marca;
-		this.lote = new SimpleStringProperty(lote);
-		this.categoria = new SimpleStringProperty(categoria);
-		this.unidadMedida = new SimpleStringProperty(unidadMedida);
-		this.proveedor = new SimpleStringProperty(proveedor);
+		this.lote = lote;
+		this.categoria = categoria;
+		this.unidadMedida = unidadMedida;
+		this.proveedor = proveedor;
 		this.existencia = new SimpleFloatProperty(existencia);
 		this.fechaVencimiento = fechaVencimiento;
 		this.moneda = moneda;
@@ -118,46 +120,31 @@ public class Producto {
 		this.marca = marca;
 	}
 		
-	public String getLote() {
-		return lote.get();
+	public Lote getLote() {
+		return lote;
 	}
-	public void setLote(String lote) {
-		this.lote = new SimpleStringProperty(lote);
-	}
-	public StringProperty loteProperty(){
-		return this.lote;
+	public void setLote(Lote lote) {
+		this.lote = lote;
 	}
 	
-	public String getCategoria() {
-		return categoria.get();
+	public Categoria getCategoria() {
+		return categoria;
 	}
-	public void setCategoria(String categoria) {
-		this.categoria = new SimpleStringProperty(categoria);
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}	
+	public UnidadMedida getUnidadMedida() {
+		return unidadMedida;
 	}
-	public StringProperty categoriaProperty(){
-		return this.categoria;
+	public void setUnidadMedida(UnidadMedida unidadMedida) {
+		this.unidadMedida = unidadMedida;
+	}	
+	public Proveedor getProveedor() {
+		return proveedor;
 	}
-	
-	public String getUnidadMedida() {
-		return unidadMedida.get();
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
 	}
-	public void setUnidadMedida(String unidadMedida) {
-		this.unidadMedida = new SimpleStringProperty(unidadMedida);
-	}
-	public StringProperty unidadMedidaProperty(){
-		return this.unidadMedida;
-	}
-	
-	public String getProveedor() {
-		return proveedor.get();
-	}
-	public void setProveedor(String proveedor) {
-		this.proveedor = new SimpleStringProperty(proveedor);
-	}
-	public StringProperty proveedorProperty(){
-		return this.proveedor;
-	}
-	
 	public float getExistencia() {
 		return existencia.get();
 	}
@@ -191,14 +178,12 @@ public class Producto {
 				+ precioCompra.get() + "\t\t"
 				+ precioVenta.get() +"\t\t"
 				+ marca.toString() +  "\t\t"
-				+ lote.get() + "\t\t"
-				+ categoria.get() + "\t\t"
-				+ unidadMedida.get() + "\t\t"
-				+ proveedor.get() + "\t\t"
+				+ lote.toString() + "\t\t"
+				+ categoria.toString() + "\t\t"
+				+ unidadMedida.toString() + "\t\t"
+				+ proveedor.toString() + "\t\t"
 				+ existencia.get() + "\t\t"
 				+ fechaVencimiento.toString() + "\t\t"
 				+ moneda.toString();
-	}
-	
-	
+	}	
 }

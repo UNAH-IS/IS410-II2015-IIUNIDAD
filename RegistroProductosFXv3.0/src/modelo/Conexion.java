@@ -57,7 +57,7 @@ public class Conexion {
 		}
 	}
 	
-	public void llenarInformacionLote(ObservableList<String> lista){
+	public void llenarInformacionLote(ObservableList<Lote> lista){
 		try {
 			Statement instruccion = conexion.createStatement();
 			ResultSet resultado = instruccion.executeQuery(
@@ -65,14 +65,19 @@ public class Conexion {
 					+ "lote "
 					+ "FROM tbl_lotes");
 			while(resultado.next()){
-				lista.add(resultado.getString("lote"));
+				lista.add(
+					new Lote(
+						resultado.getInt("codigo_lote"),
+						resultado.getString("lote")
+					)
+				);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void llenarInformacionCategorias(ObservableList<String> lista){
+	public void llenarInformacionCategorias(ObservableList<Categoria> lista){
 		try {
 			Statement instruccion = conexion.createStatement();
 			ResultSet resultado = instruccion.executeQuery(
@@ -80,14 +85,19 @@ public class Conexion {
 					+ "nombre_categoria "
 					+ "FROM tbl_categorias");
 			while(resultado.next()){
-				lista.add(resultado.getString("nombre_categoria"));
+				lista.add(
+					new Categoria(
+						resultado.getInt("codigo_categoria"),
+						resultado.getString("nombre_categoria")
+					)
+				);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void llenarInformacionUnidadMedida(ObservableList<String> lista){
+	public void llenarInformacionUnidadMedida(ObservableList<UnidadMedida> lista){
 		try {
 			Statement instruccion = conexion.createStatement();
 			ResultSet resultado = instruccion.executeQuery(
@@ -95,14 +105,19 @@ public class Conexion {
 					+ "nombre_unidad_medida "
 					+ "FROM tbl_unidad_medidas");
 			while(resultado.next()){
-				lista.add(resultado.getString("nombre_unidad_medida"));
+				lista.add(
+					new UnidadMedida(
+						resultado.getInt("codigo_unidad_medida"),
+						resultado.getString("nombre_unidad_medida")
+					)
+				);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void llenarInformacionProveedores(ObservableList<String> lista){
+	public void llenarInformacionProveedores(ObservableList<Proveedor> lista){
 		try {
 			Statement instruccion = conexion.createStatement();
 			ResultSet resultado = instruccion.executeQuery(
@@ -110,7 +125,12 @@ public class Conexion {
 					+ "nombre_proveedor "
 					+ "FROM tbl_proveedores");
 			while(resultado.next()){
-				lista.add(resultado.getString("nombre_proveedor"));
+				lista.add(
+					new Proveedor(
+						resultado.getInt("codigo_proveedor"),
+						resultado.getString("nombre_proveedor")
+					)
+				);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,6 +151,88 @@ public class Conexion {
 						resultado.getInt("codigo_moneda"),
 						resultado.getString("nombre_moneda"),
 						resultado.getString("abreviatura_moneda")
+					)
+				);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void llenarInformacionTableView(ObservableList<Producto> lista){
+		try {
+			Statement instruccion = conexion.createStatement();
+			ResultSet resultado = instruccion.executeQuery(
+					"SELECT  A.codigo_producto, " +
+						"A.codigo_barra, " +
+						"A.nombre_producto, " +
+						"A.descripcion_de_producto, " +
+				        "A.codigo_marca, " +
+				        "B.nombre_marca, " +
+				        "A.codigo_lote, " +
+				        "A.precio_de_compra, " +
+				        "A.precio_de_venta, " +
+				        "C.lote, " +
+				        "A.codigo_categoria, " +
+				        "D.nombre_categoria, " +
+				        "A.codigo_proveedores, " +
+				        "E.nombre_proveedor, " +
+				        "A.codigo_moneda, " +
+				        "F.nombre_moneda, " +
+				        "F.abreviatura_moneda, " +
+				        "A.codigo_unidad_medida, " +
+				        "G.nombre_unidad_medida, " +
+				        "A.existencia, " +
+				        "A.fecha_vencimiento " + 
+					"FROM 	tbl_productos A " +
+					"INNER JOIN tbl_marcas B " +
+					"ON (A.codigo_marca = B.codigo_marca) " +
+					"INNER JOIN tbl_lotes C " +
+					"ON (A.codigo_lote = c.codigo_lote) " +
+					"INNER JOIN tbl_categorias D " +
+					"ON (A.codigo_categoria = D.codigo_categoria) " +
+					"INNER JOIN tbl_proveedores E " +
+					"ON (A.codigo_proveedores = E.codigo_proveedor) " +
+					"INNER JOIN tbl_monedas F " +
+					"ON (A.codigo_moneda = F.codigo_moneda) " +
+					"INNER JOIN tbl_unidad_medidas G " +
+					"ON (A.codigo_unidad_medida = G.codigo_unidad_medida)");
+			while(resultado.next()){
+				lista.add(
+					new Producto(
+						resultado.getInt("codigo_producto"),
+						resultado.getString("codigo_barra"),
+						resultado.getString("nombre_producto"),
+						resultado.getString("descripcion_de_producto"),
+						resultado.getDouble("precio_de_compra"),
+						resultado.getDouble("precio_de_venta"),
+						new Marca(
+								resultado.getInt("codigo_marca"),
+								resultado.getString("nombre_marca")
+						),
+						new Lote(
+								resultado.getInt("codigo_lote"),
+								resultado.getString("lote")
+						),
+						new Categoria(
+								resultado.getInt("codigo_categoria"),
+								resultado.getString("nombre_categoria")
+						),
+						new UnidadMedida(
+								resultado.getInt("codigo_unidad_medida"),
+								resultado.getString("nombre_unidad_medida")
+						),
+						new Proveedor(
+								resultado.getInt("codigo_proveedores"),
+								resultado.getString("nombre_proveedor")
+						),
+						resultado.getFloat("existencia"),
+						resultado.getDate("fecha_vencimiento"),
+						new Moneda(
+								resultado.getInt("codigo_moneda"),
+								resultado.getString("nombre_moneda"),
+								resultado.getString("abreviatura_moneda")
+						)					
 					)
 				);
 			}
