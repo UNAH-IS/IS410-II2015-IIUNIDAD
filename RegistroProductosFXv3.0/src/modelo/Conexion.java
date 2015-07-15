@@ -18,6 +18,9 @@ public class Conexion {
 		establecerConexion();
 	}
 	
+	public Connection getConexion(){
+		return this.conexion;
+	}
 	public void establecerConexion(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

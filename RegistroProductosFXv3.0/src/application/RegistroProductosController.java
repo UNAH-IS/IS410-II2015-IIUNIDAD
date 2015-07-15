@@ -248,60 +248,73 @@ public class RegistroProductosController implements Initializable{
 	
 	@FXML
 	public void agregarRegistro(){
-		informacion.add(
-				new Producto(
-					Integer.valueOf(txtCodigoProducto.getText()),
-					txtCodigoBarras.getText(),
-					txtNombreProducto.getText(),
-					txtDescripcion.getText(),
-					Double.valueOf(txtPrecioCompra.getText()),
-					Double.valueOf(txtPrecioVenta.getText()),
-					cboMarca.getSelectionModel().getSelectedItem(),
-					cboLote.getSelectionModel().getSelectedItem(),
-					cboCategoria.getSelectionModel().getSelectedItem(),
-					cboUnidadMedida.getSelectionModel().getSelectedItem(),
-					cboProveedor.getSelectionModel().getSelectedItem(),
-					Float.valueOf(txtExistencia.getText()),
-					Date.valueOf(dpFechaVencimiento.getValue()),
-					cboMoneda.getSelectionModel().getSelectedItem()
-				)
+		Producto p = new Producto(
+				Integer.valueOf(txtCodigoProducto.getText()),
+				txtCodigoBarras.getText(),
+				txtNombreProducto.getText(),
+				txtDescripcion.getText(),
+				Double.valueOf(txtPrecioCompra.getText()),
+				Double.valueOf(txtPrecioVenta.getText()),
+				cboMarca.getSelectionModel().getSelectedItem(),
+				cboLote.getSelectionModel().getSelectedItem(),
+				cboCategoria.getSelectionModel().getSelectedItem(),
+				cboUnidadMedida.getSelectionModel().getSelectedItem(),
+				cboProveedor.getSelectionModel().getSelectedItem(),
+				Float.valueOf(txtExistencia.getText()),
+				Date.valueOf(dpFechaVencimiento.getValue()),
+				cboMoneda.getSelectionModel().getSelectedItem()
 		);
-		//JDK > 8u0.40
-		Alert cuadroDialogo = new Alert(AlertType.INFORMATION);
-		cuadroDialogo.setContentText("Registro almacenado con exito");
-		cuadroDialogo.setTitle("Registro agregado");
-		cuadroDialogo.setHeaderText("Resultado:");
-		cuadroDialogo.showAndWait();
-		//actualizarResultado();
+		conexion.establecerConexion();
+		int resultado = p.guardarRegistro(conexion);
+		conexion.cerrarConexion();
+		
+		if (resultado==1){
+			informacion.add(p);
+			//JDK > 8u0.40
+			Alert cuadroDialogo = new Alert(AlertType.INFORMATION);
+			cuadroDialogo.setContentText("Registro almacenado con exito");
+			cuadroDialogo.setTitle("Registro agregado");
+			cuadroDialogo.setHeaderText("Resultado:");
+			cuadroDialogo.showAndWait();
+			//actualizarResultado();
+		}
 	}
 	
 	@FXML
 	public void actualizarRegistro(){
-		informacion.set(
-				tblInformacion.getSelectionModel().getSelectedIndex(),
-				new Producto(
-					Integer.valueOf(txtCodigoProducto.getText()),
-					txtCodigoBarras.getText(),
-					txtNombreProducto.getText(),
-					txtDescripcion.getText(),
-					Double.valueOf(txtPrecioCompra.getText()),
-					Double.valueOf(txtPrecioVenta.getText()),
-					cboMarca.getSelectionModel().getSelectedItem(),
-					cboLote.getSelectionModel().getSelectedItem(),
-					cboCategoria.getSelectionModel().getSelectedItem(),
-					cboUnidadMedida.getSelectionModel().getSelectedItem(),
-					cboProveedor.getSelectionModel().getSelectedItem(),
-					Float.valueOf(txtExistencia.getText()),
-					new Date(dpFechaVencimiento.getValue().toEpochDay()),
-					cboMoneda.getSelectionModel().getSelectedItem()
-				)
+		Producto p = new Producto(
+				Integer.valueOf(txtCodigoProducto.getText()),
+				txtCodigoBarras.getText(),
+				txtNombreProducto.getText(),
+				txtDescripcion.getText(),
+				Double.valueOf(txtPrecioCompra.getText()),
+				Double.valueOf(txtPrecioVenta.getText()),
+				cboMarca.getSelectionModel().getSelectedItem(),
+				cboLote.getSelectionModel().getSelectedItem(),
+				cboCategoria.getSelectionModel().getSelectedItem(),
+				cboUnidadMedida.getSelectionModel().getSelectedItem(),
+				cboProveedor.getSelectionModel().getSelectedItem(),
+				Float.valueOf(txtExistencia.getText()),
+				new Date(dpFechaVencimiento.getValue().toEpochDay()),
+				cboMoneda.getSelectionModel().getSelectedItem()
 		);
-		//JDK > 8u0.40
-		Alert cuadroDialogo = new Alert(AlertType.INFORMATION);
-		cuadroDialogo.setContentText("Registro actualizado con exito");
-		cuadroDialogo.setTitle("Registro Actualizado");
-		cuadroDialogo.setHeaderText("Resultado:");
-		cuadroDialogo.showAndWait();
+
+		conexion.establecerConexion();
+		int resultado = p.actualizarRegistro(conexion);
+		conexion.cerrarConexion();
+		
+		if (resultado==1){
+			informacion.set(
+					tblInformacion.getSelectionModel().getSelectedIndex(),
+					p
+			);
+			//JDK > 8u0.40
+			Alert cuadroDialogo = new Alert(AlertType.INFORMATION);
+			cuadroDialogo.setContentText("Registro actualizado con exito");
+			cuadroDialogo.setTitle("Registro Actualizado");
+			cuadroDialogo.setHeaderText("Resultado:");
+			cuadroDialogo.showAndWait();
+		}
 	}
 	
 	@FXML
@@ -312,14 +325,22 @@ public class RegistroProductosController implements Initializable{
 		cuadroDialogoConfirmacion.setContentText("¿Esta seguro que desea eliminar este registro?");
 		Optional<ButtonType> resultado = cuadroDialogoConfirmacion.showAndWait();
 		if(resultado.get() == ButtonType.OK){
-			informacion.remove(tblInformacion.getSelectionModel().getSelectedIndex());
-			limpiarComponentes();
-			//JDK > 8u0.40
-			Alert cuadroDialogo = new Alert(AlertType.INFORMATION);
-			cuadroDialogo.setContentText("Registro eliminado con exito");
-			cuadroDialogo.setTitle("Registro Eliminado");
-			cuadroDialogo.setHeaderText("Resultado:");
-			cuadroDialogo.showAndWait();
+			Producto p = new Producto();
+			p.setCodigoProducto(Integer.valueOf(txtCodigoProducto.getText()));
+			conexion.establecerConexion();
+			int r = p.eliminarRegistro(conexion);
+			conexion.cerrarConexion();
+			
+			if (r==1){
+				informacion.remove(tblInformacion.getSelectionModel().getSelectedIndex());
+				limpiarComponentes();
+				//JDK > 8u0.40
+				Alert cuadroDialogo = new Alert(AlertType.INFORMATION);
+				cuadroDialogo.setContentText("Registro eliminado con exito");
+				cuadroDialogo.setTitle("Registro Eliminado");
+				cuadroDialogo.setHeaderText("Resultado:");
+				cuadroDialogo.showAndWait();
+			}
 		}		
 	}
 	

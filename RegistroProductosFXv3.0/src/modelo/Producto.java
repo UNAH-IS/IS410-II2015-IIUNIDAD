@@ -3,6 +3,8 @@ package modelo;
 
 //Java Bean = POJO
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.FloatProperty;
@@ -49,6 +51,8 @@ public class Producto {
 		this.fechaVencimiento = fechaVencimiento;
 		this.moneda = moneda;
 	}
+	
+	public Producto(){}
 	
 	public int getCodigoProducto() {
 		return codigoProducto.get();
@@ -186,4 +190,91 @@ public class Producto {
 				+ fechaVencimiento.toString() + "\t\t"
 				+ moneda.toString();
 	}	
+	
+	public int guardarRegistro(Conexion conexion){
+		try {
+			PreparedStatement ps = conexion.getConexion().prepareStatement(
+				"INSERT INTO tbl_productos ( " + 
+					"codigo_barra, " + 
+					"nombre_producto, descripcion_de_producto, " +  
+					"precio_de_compra, precio_de_venta, " +  
+					"existencia, fecha_vencimiento, " +  
+					"codigo_marca, codigo_categoria, " + 
+					"codigo_proveedores, codigo_moneda, " + 
+					"codigo_unidad_medida, codigo_lote " + 
+				") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+			);
+			ps.setString(1, codigoBarra.get());
+			ps.setString(2, nombreProducto.get());
+			ps.setString(3, descripcion.get());
+			ps.setDouble(4, precioCompra.get());
+			ps.setDouble(5, precioVenta.get());
+			ps.setFloat(6, existencia.get());
+			ps.setDate(7, fechaVencimiento);
+			ps.setInt(8, marca.getCodigoMarca());
+			ps.setInt(9, categoria.getCodigoCategoria());
+			ps.setInt(10, proveedor.getCodigoProveedor());
+			ps.setInt(11, moneda.getCodigoMoneda());
+			ps.setInt(12, unidadMedida.getCodigoUnidadMedida());
+			ps.setInt(13, lote.getCodigoLote());
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public int actualizarRegistro(Conexion conexion){
+		try {
+			PreparedStatement ps = conexion.getConexion().prepareStatement(
+				"UPDATE tbl_productos " + 
+				"SET codigo_barra = ?, " +
+					"nombre_producto = ?,  " +
+					"descripcion_de_producto = ?, " + 
+					"precio_de_compra = ?,  " +
+					"precio_de_venta = ?,  " +
+					"existencia = ?,  " +
+					"fecha_vencimiento = ?, " + 
+					"codigo_marca = ?,  " +
+					"codigo_categoria = ?,  " +
+					"codigo_proveedores = ?,  " +
+					"codigo_moneda = ?,  " +
+					"codigo_unidad_medida = ?,  " + 
+					"codigo_lote = ?  " +
+				"WHERE codigo_producto = ?"
+		);
+			ps.setString(1, codigoBarra.get());
+			ps.setString(2, nombreProducto.get());
+			ps.setString(3, descripcion.get());
+			ps.setDouble(4, precioCompra.get());
+			ps.setDouble(5, precioVenta.get());
+			ps.setFloat(6, existencia.get());
+			ps.setDate(7, fechaVencimiento);
+			ps.setInt(8, marca.getCodigoMarca());
+			ps.setInt(9, categoria.getCodigoCategoria());
+			ps.setInt(10, proveedor.getCodigoProveedor());
+			ps.setInt(11, moneda.getCodigoMoneda());
+			ps.setInt(12, unidadMedida.getCodigoUnidadMedida());
+			ps.setInt(13, lote.getCodigoLote());
+			ps.setInt(14, codigoProducto.get());
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public int eliminarRegistro(Conexion conexion){
+		try {
+			PreparedStatement ps = conexion.getConexion().prepareStatement(
+				"DELETE FROM tbl_productos WHERE codigo_producto = ?"
+			);
+		
+			ps.setInt(1, codigoProducto.get());
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
 }

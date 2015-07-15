@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="728.0" prefWidth="517.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegistroProductosController">
+<AnchorPane prefHeight="687.0" prefWidth="517.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegistroProductosController">
   <!-- TODO Add Nodes -->
   <children>
-    <SplitPane dividerPositions="0.6804407713498623" focusTraversable="true" orientation="VERTICAL" prefHeight="540.0001068115234" prefWidth="310.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <SplitPane dividerPositions="0.7211678832116788" focusTraversable="true" orientation="VERTICAL" prefHeight="540.0001068115234" prefWidth="310.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <items>
         <AnchorPane>
           <children>
@@ -67,7 +67,7 @@
                            <padding>
                               <Insets right="5.0" />
                            </padding></Label>
-                        <TextField fx:id="txtCodigoProducto" disable="true" prefHeight="25.0" prefWidth="242.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtCodigoProducto" prefHeight="25.0" prefWidth="242.0" GridPane.columnIndex="1" />
                         <TextField fx:id="txtNombreProducto" prefHeight="25.0" prefWidth="354.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextArea fx:id="txtDescripcion" prefHeight="50.0" prefWidth="353.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <ComboBox fx:id="cboMarca" prefHeight="25.0" prefWidth="337.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
@@ -85,7 +85,7 @@
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <ComboBox fx:id="cboMoneda" prefHeight="25.0" prefWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                        <ComboBox fx:id="cboMoneda" prefHeight="25.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
               </children>
               <columnConstraints>
                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="144.0" />
@@ -120,10 +120,10 @@
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="515.0">
                <children>
-                  <TableView fx:id="tblInformacion" layoutX="-1.0" prefHeight="229.0" prefWidth="515.0">
+                  <TableView fx:id="tblInformacion" layoutY="5.0" prefHeight="188.0" prefWidth="515.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="clmnCodigoProducto" prefWidth="75.0" text="Codigo" />
-                      <TableColumn fx:id="clmnCodigoBarras" prefWidth="75.0" text="Codigo Barra" />
+                      <TableColumn fx:id="clmnCodigoBarras" prefWidth="75.0" text="Codigo Barras" />
                         <TableColumn fx:id="clmnNombreProducto" prefWidth="75.0" text="Nombre" />
                         <TableColumn fx:id="clmnPrecioCompra" prefWidth="75.0" text="P/Compra" />
                         <TableColumn fx:id="clmnPrecioVenta" prefWidth="75.0" text="P/Venta" />
