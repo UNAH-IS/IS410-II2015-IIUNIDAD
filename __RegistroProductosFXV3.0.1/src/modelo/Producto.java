@@ -194,15 +194,16 @@ public class Producto {
 		try {
 			PreparedStatement ps = 
 					connection.prepareStatement(
-					"INSERT INTO tbl_productos ( " +
-					"codigo_barra, " +
-					"nombre_producto, descripcion_de_producto, " +
-					"precio_de_compra, precio_de_venta, " +
-					"existencia, fecha_vencimiento, " +
-					"codigo_marca, codigo_categoria, " +
-					"codigo_proveedores, codigo_moneda, " +
-					"codigo_unidad_medida, codigo_lote " +
-				") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					"INSERT INTO tbl_productos ( "+
+						"codigo_barra, "+
+						"nombre_producto, descripcion_de_producto, " +
+					    "precio_de_compra, precio_de_venta, "+ 
+						"existencia, fecha_vencimiento, "+ 
+						"codigo_marca, codigo_categoria, "+
+						"codigo_proveedores, codigo_moneda, "+
+						"codigo_unidad_medida, codigo_lote "+
+					") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+			);
 			ps.setString(1, codigoBarra.get());
 			ps.setString(2, nombreProducto.get());
 			ps.setString(3, descripcion.get());
@@ -218,65 +219,6 @@ public class Producto {
 			ps.setInt(13, lote.getCodigoLote());
 			
 			return ps.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
-		}
-	}
-	
-	public int actualizarRegistro(Connection connection){
-		try {
-			PreparedStatement ps = 
-					connection.prepareStatement(
-					"UPDATE  tbl_productos SET " +
-							"codigo_barra = ?, " + 
-							"nombre_producto = ?, " +
-							"descripcion_de_producto = ?, " + 
-							"precio_de_compra = ?,  " +
-							"precio_de_venta = ?,  " +
-							"existencia = ?,  " +
-							"fecha_vencimiento = ?, " +
-							"codigo_marca = ?,  " +
-							"codigo_categoria = ?,  " +
-							"codigo_proveedores = ?, " +
-							"codigo_moneda = ?, " +
-							"codigo_unidad_medida = ?, " +
-							"codigo_lote = ?  " +
-					"WHERE codigo_producto = ?");
-			ps.setString(1, codigoBarra.get());
-			ps.setString(2, nombreProducto.get());
-			ps.setString(3, descripcion.get());
-			ps.setDouble(4, precioCompra.get());
-			ps.setDouble(5, precioVenta.get());
-			ps.setFloat(6, existencia.get());
-			ps.setDate(7, fechaVencimiento);
-			ps.setInt(8, marca.getCodigoMarca());
-			ps.setInt(9, categoria.getCodigoCategoria());
-			ps.setInt(10, proveedor.getCodigoProveedor());
-			ps.setInt(11, moneda.getCodigoMoneda());
-			ps.setInt(12, unidadMedida.getCodigoUnidadMedida());
-			ps.setInt(13, lote.getCodigoLote());
-			ps.setInt(14, codigoProducto.get());
-			
-			return ps.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
-		}
-	}
-	public static int eliminarRegistro(Connection connection,
-			int codigo){
-		try {
-			PreparedStatement ps = 
-					connection.prepareStatement(
-					"DELETE FROM tbl_productos " + 
-					"WHERE codigo_producto = ?");
-			ps.setInt(1, codigo);
-			
-			return ps.executeUpdate();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;

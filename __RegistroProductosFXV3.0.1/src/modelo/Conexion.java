@@ -21,7 +21,6 @@ public class Conexion {
 	public Connection getConnection(){
 		return conexion;
 	}
-	
 	public void establecerConexion(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

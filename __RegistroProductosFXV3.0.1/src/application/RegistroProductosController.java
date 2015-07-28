@@ -243,9 +243,8 @@ public class RegistroProductosController implements Initializable{
 	
 	@FXML
 	public void agregarRegistro(){
-		//Integer.valueOf(txtCodigoProducto.getText())
 		Producto p = new Producto(
-				0,
+				Integer.valueOf(txtCodigoProducto.getText()),
 				txtCodigoBarras.getText(),
 				txtNombreProducto.getText(),
 				txtDescripcion.getText(),
@@ -277,55 +276,43 @@ public class RegistroProductosController implements Initializable{
 	
 	@FXML
 	public void actualizarRegistro(){
-		Producto p = new Producto(
-				Integer.valueOf(txtCodigoProducto.getText()),
-				txtCodigoBarras.getText(),
-				txtNombreProducto.getText(),
-				txtDescripcion.getText(),
-				Double.valueOf(txtPrecioCompra.getText()),
-				Double.valueOf(txtPrecioVenta.getText()),
-				cboMarca.getSelectionModel().getSelectedItem(),
-				cboLote.getSelectionModel().getSelectedItem(),
-				cboCategoria.getSelectionModel().getSelectedItem(),
-				cboUnidadMedida.getSelectionModel().getSelectedItem(),
-				cboProveedor.getSelectionModel().getSelectedItem(),
-				Float.valueOf(txtExistencia.getText()),
-				new Date(dpFechaVencimiento.getValue().toEpochDay()),
-				cboMoneda.getSelectionModel().getSelectedItem()
+		informacion.set(
+				tblInformacion.getSelectionModel().getSelectedIndex(),
+				new Producto(
+					Integer.valueOf(txtCodigoProducto.getText()),
+					txtCodigoBarras.getText(),
+					txtNombreProducto.getText(),
+					txtDescripcion.getText(),
+					Double.valueOf(txtPrecioCompra.getText()),
+					Double.valueOf(txtPrecioVenta.getText()),
+					cboMarca.getSelectionModel().getSelectedItem(),
+					cboLote.getSelectionModel().getSelectedItem(),
+					cboCategoria.getSelectionModel().getSelectedItem(),
+					cboUnidadMedida.getSelectionModel().getSelectedItem(),
+					cboProveedor.getSelectionModel().getSelectedItem(),
+					Float.valueOf(txtExistencia.getText()),
+					new Date(dpFechaVencimiento.getValue().toEpochDay()),
+					cboMoneda.getSelectionModel().getSelectedItem()
+				)
 		);
-		conexion.establecerConexion();
-		int resultado = p.actualizarRegistro(conexion.getConnection());
-		conexion.cerrarConexion();
-		if (resultado == 1){
-			informacion.set(
-					tblInformacion.getSelectionModel().getSelectedIndex(),
-					p
-			);
-			//JDK > 8u0.40
-			Alert cuadroDialogo = new Alert(AlertType.INFORMATION);
-			cuadroDialogo.setContentText("El registro se actualizo con exito.");
-			cuadroDialogo.setTitle("Resultado");
-			cuadroDialogo.setHeaderText("Resultado:");
-			cuadroDialogo.showAndWait();
-		}
+		//JDK > 8u0.40
+		Alert cuadroDialogo = new Alert(AlertType.INFORMATION);
+		cuadroDialogo.setContentText("El registro se actualizo con exito.");
+		cuadroDialogo.setTitle("Resultado");
+		cuadroDialogo.setHeaderText("Resultado:");
+		cuadroDialogo.showAndWait();
 	}
 	
 	@FXML
 	public void eliminarRegistro(){
-		conexion.establecerConexion();
-		int resultado = Producto.eliminarRegistro(conexion.getConnection(),
-				Integer.valueOf(txtCodigoProducto.getText()));
-		conexion.cerrarConexion();
-		if (resultado == 1){
-			informacion.remove(tblInformacion.getSelectionModel().getSelectedIndex());
-			limpiarComponentes();
-			//JDK > 8u0.40
-			Alert cuadroDialogo = new Alert(AlertType.INFORMATION);
-			cuadroDialogo.setContentText("El registro se elimino con exito.");
-			cuadroDialogo.setTitle("Resultado");
-			cuadroDialogo.setHeaderText("Resultado:");
-			cuadroDialogo.showAndWait();
-		}
+		informacion.remove(tblInformacion.getSelectionModel().getSelectedIndex());
+		limpiarComponentes();
+		//JDK > 8u0.40
+		Alert cuadroDialogo = new Alert(AlertType.INFORMATION);
+		cuadroDialogo.setContentText("El registro se elimino con exito.");
+		cuadroDialogo.setTitle("Resultado");
+		cuadroDialogo.setHeaderText("Resultado:");
+		cuadroDialogo.showAndWait();
 	}
 	
 	@FXML

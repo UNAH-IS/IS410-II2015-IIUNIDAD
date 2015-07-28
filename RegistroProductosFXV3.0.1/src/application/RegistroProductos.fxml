@@ -67,7 +67,7 @@
                            <padding>
                               <Insets right="5.0" />
                            </padding></Label>
-                        <TextField fx:id="txtCodigoProducto" prefHeight="25.0" prefWidth="242.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtCodigoProducto" disable="true" prefHeight="25.0" prefWidth="242.0" GridPane.columnIndex="1" />
                         <TextField fx:id="txtNombreProducto" prefHeight="25.0" prefWidth="354.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextArea fx:id="txtDescripcion" prefHeight="50.0" prefWidth="353.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <ComboBox fx:id="cboMarca" prefHeight="25.0" prefWidth="337.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
