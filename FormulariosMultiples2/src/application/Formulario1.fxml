@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="152.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Formulario1Controller">
+   <children>
+      <Label layoutX="103.0" layoutY="41.0" text="Formulario 1">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="111.0" mnemonicParsing="false" onAction="#abrirFormulario3" text="Ir a formulario 3" />
+   </children>
+</AnchorPane>

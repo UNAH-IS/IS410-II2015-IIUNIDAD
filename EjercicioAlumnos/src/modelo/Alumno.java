@@ -2,12 +2,17 @@ package modelo;
 
 /* Java Bean
 * Clase: Alumno  */
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 
 public class Alumno{
 	private IntegerProperty codigoAlumno;
@@ -124,5 +129,54 @@ public class Alumno{
 	
 	public void eliminarRegistro(){
 		
+	}
+	
+	public static void llenarInformacionAlumnos(Connection connection,
+				ObservableList<Alumno> lista){
+		String userIdea = "pollo";
+		char first = Character.toUpperCase(userIdea.charAt(0));
+		String betterIdea = first + userIdea.substring(1);
+		
+		try {
+			Statement instruccion = connection.createStatement();
+			ResultSet resultado = instruccion.executeQuery(
+					"SELECT A.codigo_alumno, " +
+						"A.nombre, " +
+					    "A.apellido, " +
+					    "A.edad, " +
+					    "A.genero, " +
+					    "A.fecha_ingreso, " +
+					    "A.codigo_centro, " +
+					    "A.codigo_carrera, " +
+					    "B.nombre_carrera, " +
+					    "B.cantidad_asignaturas, " +
+					    "C.nombre_centro_estudio " +
+					"FROM tbl_alumnos A " +
+					"INNER JOIN tbl_carreras B " +
+					"ON (A.codigo_carrera = B.codigo_carrera) " +
+					"INNER JOIN tbl_centros_estudio C " +
+					"ON (A.codigo_centro = C.codigo_centro)"
+			);
+			while(resultado.next()){
+				lista.add(
+						new Alumno(
+								resultado.getInt("codigo_alumno"),
+								resultado.getString("nombre"),
+								resultado.getString("apellido"),
+								resultado.getInt("edad"),
+								resultado.getString("genero"),
+								resultado.getDate("fecha_ingreso"),
+								new CentroEstudio(resultado.getInt("codigo_centro"), 
+										resultado.getString("nombre_centro_estudio")
+								),
+								new Carrera(resultado.getInt("codigo_carrera"),
+										resultado.getString("nombre_carrera"),
+										resultado.getInt("cantidad_asignaturas"))
+						)
+				);
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

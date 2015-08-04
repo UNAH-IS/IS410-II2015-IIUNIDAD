@@ -102,15 +102,15 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView layoutX="78.0" layoutY="25.0" prefHeight="356.0" prefWidth="555.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tblViewAlumnos" layoutX="78.0" layoutY="25.0" prefHeight="356.0" prefWidth="555.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Nombre" />
-                      <TableColumn prefWidth="75.0" text="Apellido" />
-                        <TableColumn prefWidth="75.0" text="Edad" />
-                        <TableColumn prefWidth="75.0" text="Genero" />
-                        <TableColumn prefWidth="96.0" text="Fecha/Ingreso" />
-                        <TableColumn prefWidth="96.0" text="Carrera" />
-                        <TableColumn prefWidth="84.0" text="Centro de Estudios" />
+                      <TableColumn fx:id="clmnNombre" prefWidth="75.0" text="Nombre" />
+                      <TableColumn fx:id="clmnApellido" prefWidth="75.0" text="Apellido" />
+                        <TableColumn fx:id="clmnEdad" prefWidth="75.0" text="Edad" />
+                        <TableColumn fx:id="clmnGenero" prefWidth="75.0" text="Genero" />
+                        <TableColumn fx:id="clmnFechaIngreso" prefWidth="96.0" text="Fecha/Ingreso" />
+                        <TableColumn fx:id="clmnCarrera" prefWidth="96.0" text="Carrera" />
+                        <TableColumn fx:id="clmnCentroEstudio" prefWidth="84.0" text="Centro de Estudios" />
                     </columns>
                   </TableView>
                </children>

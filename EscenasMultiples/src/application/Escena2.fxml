@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="274.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Escena2Controller">
+   <children>
+      <Button layoutX="79.0" layoutY="14.0" mnemonicParsing="false" onAction="#cambiarEscena1" text="Anterior" />
+      <Button layoutX="186.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Salir" />
+      <Label layoutX="97.0" layoutY="117.0" text="Escena 2">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
