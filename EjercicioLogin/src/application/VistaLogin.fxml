@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="154.0" prefWidth="347.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.VistaLoginController">
+<AnchorPane prefHeight="154.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.VistaLoginController">
    <children>
       <GridPane layoutX="35.0" layoutY="31.0" prefHeight="60.0" prefWidth="282.0">
         <columnConstraints>
@@ -20,8 +19,8 @@
          <children>
             <Label text="Usuario:" />
             <Label prefHeight="17.0" prefWidth="68.0" text="Contraseña:" GridPane.rowIndex="1" />
-            <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" />
+            <PasswordField fx:id="txtContrasena" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtUsuario" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Button layoutX="131.0" layoutY="109.0" mnemonicParsing="false" onAction="#abrirFormularioPrincipal" text="Iniciar Sesion" />

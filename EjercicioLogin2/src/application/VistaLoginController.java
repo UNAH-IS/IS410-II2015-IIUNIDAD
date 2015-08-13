@@ -11,6 +11,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import modelo.Conexion;
+import modelo.Usuario;
 
 public class VistaLoginController {
 	private Main main;
@@ -23,30 +24,9 @@ public class VistaLoginController {
 		//Conectar a la bd
 		conexion = new Conexion();
 		conexion.establecerConexion();
-		//Verificar el usuario (Script)
-		Connection connection = conexion.getConnection();
-		int cantidadRegistros = 0;
-		try {
-			PreparedStatement ps = 
-					connection.prepareStatement(
-							"SELECT codigo_usuario " +
-							"FROM tbl_usuarios " +
-							"WHERE usuario = ? " +
-							"AND contrasena = sha1(?)"
-					);
 			
-			
-			ps.setString(1, txtUsuario.getText());
-			ps.setString(2, txtContrasena.getText());
-			ResultSet resultado = ps.executeQuery();
-			cantidadRegistros = resultado.getFetchSize();
-			while(resultado.next())
-				System.out.println(resultado.getInt("codigo_usuario"));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		conexion.cerrarConexion();	
-		if (cantidadRegistros == 1)
+		if (Usuario.verificarUsuario(conexion.getConnection(), 
+				txtUsuario.getText(), txtContrasena.getText()))
 			main.abrirFormularioPrincipal();
 		else {
 			Alert mensaje = new Alert(AlertType.ERROR);
@@ -54,6 +34,7 @@ public class VistaLoginController {
 			mensaje.setContentText("Error, usuario/contrasena invalido.");
 			mensaje.show();
 		}
+		conexion.cerrarConexion();
 			
 	}
 

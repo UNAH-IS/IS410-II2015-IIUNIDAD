@@ -5,7 +5,6 @@
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="javafx.beans.property.StringProperty"/>
 <fullyQualifiedTypeName name="java.time.LocalDate"/>
-<fullyQualifiedTypeName name="javafx.scene.control.Button"/>
 <fullyQualifiedTypeName name="prueba.PruebaJDBC"/>
 <fullyQualifiedTypeName name="ejercicio.EjercicioJDBC"/>
 <fullyQualifiedTypeName name="javafx.fxml.Initializable"/>
@@ -15,9 +14,6 @@
 <fullyQualifiedTypeName name="application.FormularioPublicacionesController"/>
 <fullyQualifiedTypeName name="application.FormularioUsuariosController"/>
 <fullyQualifiedTypeName name="application.PrincipalController"/>
-<fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
-<fullyQualifiedTypeName name="javafx.scene.control.ListView"/>
-<fullyQualifiedTypeName name="java.sql.Statement"/>
 <fullyQualifiedTypeName name="modelo.CentroEstudio"/>
 <fullyQualifiedTypeName name="javafx.scene.control.TableView"/>
 <fullyQualifiedTypeName name="javafx.scene.control.TableColumn"/>
@@ -26,9 +22,17 @@
 <fullyQualifiedTypeName name="javafx.stage.Modality"/>
 <fullyQualifiedTypeName name="application.Main"/>
 <fullyQualifiedTypeName name="application.VistaPrincipalController"/>
-<fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="javafx.scene.control.Alert"/>
-<fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
+<fullyQualifiedTypeName name="javafx.scene.control.Button"/>
+<fullyQualifiedTypeName name="javafx.scene.image.ImageView"/>
+<fullyQualifiedTypeName name="javafx.scene.image.Image"/>
+<fullyQualifiedTypeName name="javafx.scene.control.ListView"/>
+<fullyQualifiedTypeName name="java.sql.Statement"/>
 <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
+<fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="modelo.Usuario"/>
+<fullyQualifiedTypeName name="javafx.scene.chart.XYChart.Data"/>
+<fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
 </qualifiedTypeNameHistroy>
