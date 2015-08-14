@@ -12,15 +12,19 @@ import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 
 public class VistaGraficoLineaController implements Initializable{
-	@FXML private LineChart graficoLinea;
+	@FXML private LineChart<String,Float> graficoLinea;
 	
 	private ObservableList<Data<String,Float>> informacion;
 	private Series<String,Float> serieVentasMensuales;
+	
+	private ObservableList<Data<String,Float>> informacion2;
+	private Series<String,Float> serieVentasMensuales2;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		informacion = FXCollections.observableArrayList();
 		serieVentasMensuales= new Series<String,Float>();
+		serieVentasMensuales.setName("Ventas mensuales 2015");
 		informacion.add(new Data<String,Float>("Enero",145.5f));
 		informacion.add(new Data<String,Float>("Febrero",300.5f));
 		informacion.add(new Data<String,Float>("Marzo",150.3f));
@@ -30,7 +34,17 @@ public class VistaGraficoLineaController implements Initializable{
 		//Enlazar grafico con serie
 		graficoLinea.getData().add(serieVentasMensuales);
 		
-		
+		informacion2 = FXCollections.observableArrayList();
+		serieVentasMensuales2= new Series<String,Float>();
+		serieVentasMensuales2.setName("Ventas mensuales 2014");
+		informacion2.add(new Data<String,Float>("Enero",100.5f));
+		informacion2.add(new Data<String,Float>("Febrero",450.5f));
+		informacion2.add(new Data<String,Float>("Marzo",100.3f));
+		informacion2.add(new Data<String,Float>("Abril",150.7f));
+		//Enlazar observableList con Serie
+		serieVentasMensuales2.setData(informacion2);
+		//Enlazar grafico con serie
+		graficoLinea.getData().add(serieVentasMensuales2);
 		
 	}
 	
