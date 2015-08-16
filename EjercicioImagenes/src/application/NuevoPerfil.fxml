@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="487.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NuevoPerfilController">
+   <children>
+      <GridPane layoutX="21.0" layoutY="14.0" prefHeight="33.0" prefWidth="526.0" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="14.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="67.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="205.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="61.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="199.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Nombre:" />
+            <TextField fx:id="txtNombre" GridPane.columnIndex="1" />
+            <Label text="Fecha:" GridPane.columnIndex="2" />
+            <DatePicker fx:id="txtDtPckrFecha" GridPane.columnIndex="3" />
+         </children>
+      </GridPane>
+      <Button layoutX="534.0" layoutY="448.0" mnemonicParsing="false" onAction="#guardarPerfil" text="Guardar" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+      <TitledPane animated="false" layoutX="9.0" layoutY="53.0" prefHeight="383.0" prefWidth="589.0" text="Imagen:" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="53.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="imgPerfil" fitHeight="347.0" fitWidth="575.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="-3.6000000000000227" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="-5.600000000000023" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <Button layoutX="436.0" layoutY="448.0" mnemonicParsing="false" onAction="#abrirImagen" text="Abrir Imagen" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="85.0" />
+   </children>
+</AnchorPane>
