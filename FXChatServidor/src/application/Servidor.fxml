@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="322.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ServidorController">
+   <children>
+      <SplitPane dividerPositions="0.365625" layoutX="90.0" layoutY="14.0" orientation="VERTICAL" prefHeight="250.0" prefWidth="363.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TextArea fx:id="txtMensaje" layoutX="7.0" layoutY="23.0" prefHeight="61.0" prefWidth="348.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="23.0" />
+                  <Label layoutX="10.0" layoutY="3.0" prefHeight="17.0" prefWidth="73.0" text="Mensaje:" />
+                  <Button layoutX="307.0" layoutY="87.0" mnemonicParsing="false" onAction="#enviarMensaje" text="Enviar" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="6.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TextArea fx:id="txtResultado" editable="false" layoutX="28.0" layoutY="7.0" prefHeight="191.0" prefWidth="361.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
